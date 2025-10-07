@@ -1,0 +1,12 @@
+python-telegram-bot
+google-adk==1.5.0
+pydantic
+dotenv
+google-cloud-aiplatform
+vertexai
+ipykernel
+postmarker
+rich
+tavily-python
+serpapi
+google-search-results
