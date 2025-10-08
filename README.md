@@ -2,6 +2,8 @@
 
 An AI-powered research assistant that clarifies a user's query, plans searches, gathers evidence from the web, and writes a long-form, citation-rich report. It runs as a Telegram bot and can optionally email the generated report.
 
+[VIDEO DEMO](https://drive.google.com/file/d/1LWia2PmKsKrRbAZ6n0hlcLmlo-yGiTir/view?usp=sharing)
+
 ### Key Features
 - Clarifies user queries with follow-up questions
 - Plans searches using agentic planning
@@ -125,6 +127,7 @@ deep_search/
 
 - Keep your `.env` out of source control.
 - Avoid logging secrets. Rotate keys if they become exposed.
+
 
 
 
