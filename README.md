@@ -9,6 +9,18 @@ An AI-powered research assistant that clarifies a user's query, plans searches, 
 - Writes a detailed report with inline citations and references
 - Sends the report to a user via Telegram, and optionally via email (Postmark)
 
+## How It Works (High-Level Flow)
+
+1. User sends a question → stored in session.
+2. `clarify_agent` asks 3 follow-ups; answers are saved.
+3. `refined_query_agent` merges the question and answers.
+4. `search_planner_agent` proposes searches.
+5. `search_agent` calls `search_web`:
+   - `tavily_search` fetches URLs and extracts raw content when possible.
+   - `serp_search` fetches top organic results via SerpAPI with GoogleSearch.
+6. `writer_agent` produces a 1500–2500 word report with inline citations [^n] and a References list.
+7. Bot sends the report in Telegram; optionally emails it via `email_agent` (Postmark).
+   
 ## Architecture
 
 - `deep_search_agent/agent.py` defines several Google ADK agents and a simple Telegram bot conversation flow.
@@ -83,18 +95,6 @@ Then open Telegram, find your bot, and send any research question. The bot will:
 - Generate a report with citations
 - Offer to email you the report
 
-## How It Works (High-Level Flow)
-
-1. User sends a question → stored in session.
-2. `clarify_agent` asks 3 follow-ups; answers are saved.
-3. `refined_query_agent` merges the question and answers.
-4. `search_planner_agent` proposes searches.
-5. `search_agent` calls `search_web`:
-   - `tavily_search` fetches URLs and extracts raw content when possible.
-   - `serp_search` fetches top organic results via SerpAPI.
-6. `writer_agent` produces a 1500–2500 word report with inline citations [^n] and a References list.
-7. Bot sends the report in Telegram; optionally emails it via `email_agent` (Postmark).
-
 ## Project Structure
 
 ```
@@ -125,6 +125,7 @@ deep_search/
 
 - Keep your `.env` out of source control.
 - Avoid logging secrets. Rotate keys if they become exposed.
+
 
 
 
